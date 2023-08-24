@@ -4,6 +4,7 @@ from django.db import models
 class Category(models.Model):
     c_name = models.CharField(max_length=50, verbose_name='наименование')
     c_description = models.TextField(verbose_name='описание')
+    c_image = models.ImageField(upload_to='category/', verbose_name='изображение категории', null=True, blank=True)
 
     def __str__(self):
         return f'{self.id} {self.c_name}'

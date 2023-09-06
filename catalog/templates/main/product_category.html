@@ -11,14 +11,14 @@
     <div class="col-md-4">
     <div class="card mb-4 box-shadow">
         <div class="card-header">
-            <img class="card-img-top" src="{{ object.c_image|mediapath }}" height="300">
+            <img class="card-img-top" src="{{ object.p_image|mediapath }}" height="300">
             <h4 class="card-title">{{ object }}</h4>
         </div>
         <div class="card-body">
             <h1<small>{{ object.c_description }}</small></h1>
             <ul class="list-unstyled mt-3 mb-4 text-start m-3">
             </ul>
-            <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:product_category' object.pk %}">перейти</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:product' object.pk %}">перейти</a>
         </div>
     </div>
 </div>

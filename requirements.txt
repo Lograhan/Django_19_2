@@ -5,3 +5,4 @@ psycopg2-binary
 sqlparse
 typing_extensions
 ipython
+pytils

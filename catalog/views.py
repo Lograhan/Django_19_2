@@ -1,14 +1,11 @@
 from django.shortcuts import render
 from catalog.models import Category, Product
+from django.views.generic import ListView, DetailView
 
 
-def index(request):
-    all_product = Product.objects.all()
-    context = {
-        'object_list': all_product,
-        'title': 'Главная'
-    }
-    return render(request, 'main/home.html', context)
+class ProductListView(ListView):
+    model = Product
+    template_name = 'main/home.html'
 
 
 def contacts(request):
@@ -24,38 +21,36 @@ def contacts(request):
     return render(request, 'main/contacts.html', contex)
 
 
-def product(request, pk):
-    contex = {
-        'object_list': Product.objects.filter(id=pk),
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'main/product.html'
+    extra_context = {
         'title': 'Товар'
     }
-    return render(request, 'main/product.html', contex)
 
 
-def category(request):
-    all_category = Category.objects.all()
-    contex = {
-        'object_list': all_category,
-        'title': 'Категории'
-    }
-    return render(request, 'main/category.html', contex)
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'main/category.html'
 
 
-def product_category(request, pk):
-    category_item = Category.objects.get(pk=pk)
-    contex = {
-        'object_list': Product.objects.filter(p_category_id=pk),
-        'title': f'Товары категории {category_item.c_name}'
-    }
-    return render(request, 'main/product_category.html', contex)
+class ProductCategoryListView(ListView):
+    model = Product
+    template_name = 'main/product_category.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(p_category_id=self.kwargs.get('pk'))
+        return queryset
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+        category_item = Category.objects.get(pk=self.kwargs.get('pk'))
+        context_data['category_pk'] = category_item.pk,
+        context_data['title'] = f'Товары категории {category_item.c_name}'
+        return context_data
 
 
-def products(request):
-    all_product = Product.objects.all()
-    contex = {
-        'object_list': all_product,
-        'title': 'Товары'
-    }
-    return render(request, 'main/products.html', contex)
-
-
+class ProductsListView(ListView):
+    model = Product
+    template_name = 'main/products.html'

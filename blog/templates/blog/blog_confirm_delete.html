@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% load templatetags %}
+{% block content %}
+
+
+<div class="col-12">
+    <div class="row">
+        <div class="mx-auto p-1 col-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <p>
+                            Действительно удалим {{ object.title }}?
+                        </p>
+                        <button type="submit" class="btn btn-danger">
+                            Да, удаляем
+                        </button>
+                        <a href="{% url 'blog:list' %}" class="btn btn-success">
+                            Нет, я передумал
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -6,3 +6,4 @@ sqlparse
 typing_extensions
 ipython
 pytils
+django-crispy-forms

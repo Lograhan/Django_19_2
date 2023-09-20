@@ -17,7 +17,6 @@ class BlogCreateView(CreateView):
         return super().form_valid(form)
 
 
-
 class BlogListView(ListView):
     model = Blog
 
@@ -40,6 +39,7 @@ class BlogDetailView(DetailView):
 class BlogUpdateView(UpdateView):
     model = Blog
     fields = ('title', 'b_image', 'content')
+    template_name = 'blog/blog_update_form.html'
 
     def form_valid(self, form):
         if form.is_valid():

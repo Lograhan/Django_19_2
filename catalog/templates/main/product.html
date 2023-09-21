@@ -5,7 +5,7 @@
 
 <p class="fs-2">{{ object.p_name }}</p>
 <div class="mx-auto p-1" style="width: 600px;">
-      <div class="col-md-12">
+    <div class="col-md-12">
         <div class="card mb-12 box-shadow">
             <div class="card-header">
                 <img class="card-img-top" src="{{ object.p_image|mediapath }}" height="600">
@@ -15,14 +15,16 @@
 </div>
 
 
-<p class="fs-5">{{ object.p_description }} {{ object.p_price }}</p>
+<p class="fs-5">{{ object.p_description }} {{ object.p_price }}
+    {% with all_versions=object.p_version.all %}
+        {% for version in all_versions %}
+            {% if version.is_active %}
+                {{ version }}
+            {% endif %}
+        {% endfor %}
+    {% endwith %}
+</p>
 
-<h2>Активная версия товара:</h2>
-  {% with active_versions=product.get_versions %}
-    {% for version in active_versions %}
-      <p>{{ version.name }} - {{ version.num_version }}</p>
-    {% endfor %}
-  {% endwith %}
 
 <div class="col-12 mb-5">
     <a class="p-2 btn btn-outline-primary mb-5" href="{% url 'catalog:products_update' object.pk %}">Изменить</a>

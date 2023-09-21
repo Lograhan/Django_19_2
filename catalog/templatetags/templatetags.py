@@ -22,3 +22,4 @@ def max_symbol(value, max_length):
         return value
     else:
         return value[:max_length]
+

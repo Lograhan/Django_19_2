@@ -96,7 +96,7 @@ class ProductsUpdateView(UpdateView):
         return super().form_valid(form)
 
     def get_versions(self):
-        return Version.objects.filter(v_prod=self)
+        return Version.objects.filter(is_active=True)
 
 
 class ProductDeleteView(DeleteView):

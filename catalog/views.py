@@ -95,6 +95,9 @@ class ProductsUpdateView(UpdateView):
             formset.save()
         return super().form_valid(form)
 
+    def get_versions(self):
+        return Version.objects.filter(v_prod=self)
+
 
 class ProductDeleteView(DeleteView):
     model = Product

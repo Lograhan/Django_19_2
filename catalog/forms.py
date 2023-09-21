@@ -36,7 +36,8 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
         return cleaned_data
 
 
-class VersionForm(StyleFormMixin, forms.ModelForm):
+class VersionForm(forms.ModelForm):
     class Meta:
         model = Version
         fields = '__all__'
+

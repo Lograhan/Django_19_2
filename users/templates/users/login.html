@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Создаем новый товар</h1>
+    <h1 class="display-4">Вход</h1>
 </div>
 
 <div class="mx-auto p-1" style="width: 600px;">
@@ -17,8 +17,7 @@
                             <form method="post">
                                 {% csrf_token %}
                                 {{ form.as_p }}
-                                <button type="submit" class="btn btn-success">Создать</button>
-                                <a href="{% url 'catalog:category' %}" class="btn btn-warning">Нет, я передумал</a>
+                                <button type="submit" class="btn btn-success">Войти</button>
                             </form>
                         </form>
                     </div>

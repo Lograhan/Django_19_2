@@ -1,0 +1,7 @@
+{% autoescape off %}
+
+Привет!
+Вы получили это письмо при попытке регистрации. Пожалуйста перейдите по ссылке ниже, что бы закончить регистрацию.
+http://{{ domain }}{% url 'users:verify_email' uidb64=uid token=token %}
+
+{% endautoescape %}

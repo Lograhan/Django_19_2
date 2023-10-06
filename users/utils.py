@@ -1,5 +1,6 @@
+from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -14,6 +15,19 @@ def verify_mail(request, user):
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': token_generator.make_token(user)
     }
-    message = render_to_string('users/verify_email.html', context=context,)
-    email = EmailMessage('Verify email', message, to=[user.email])
-    email.send()
+    message = render_to_string('users/verify_email.html', context=context, )
+    # email = EmailMessage('Verify email', message, to=[user.email])
+    # email.send()
+    send_mail(subject='Verify email', message=message, from_email=settings.EMAIL_HOST_USER, recipient_list=[user.email])
+
+
+def password_mail(request, user):
+    current_site = get_current_site(request)
+    context = {
+        'domain': current_site.domain,
+        'user': user,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': token_generator.make_token(user)
+    }
+    message = render_to_string('users/password_reset_mail.html', context=context, )
+    send_mail(subject='Password', message=message, from_email=settings.EMAIL_HOST_USER, recipient_list=[user.email])

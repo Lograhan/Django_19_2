@@ -7,9 +7,11 @@
     <h1 class="display-4">{{ title }}</h1>
 </div>
 
+{% if user.is_authenticated %}
 <div class="col-12 mb5">
     <a class="p-2 btn btn-outline-primary mb-5" href="{% url 'catalog:products_create' %}">Добавить товар</a>
 </div>
+{% endif %}
 
 {% for object in object_list %}
     <div class="col-md-4">

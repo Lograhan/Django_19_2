@@ -26,10 +26,12 @@
     {% endwith %}
 </p>
 
-
+{% if user.is_authenticated %}
 <div class="col-12 mb-5">
     <a class="p-2 btn btn-outline-primary mb-5" href="{% url 'catalog:products_update' object.pk %}">Изменить</a>
     <a class="p-2 btn btn-outline-primary mb-5" href="{% url 'catalog:products_delete' object.pk %}">Удалить</a>
 </div>
+{% endif %}
+
 
 {% endblock %}

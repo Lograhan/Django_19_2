@@ -65,6 +65,10 @@ class ProductsCreateView(CreateView):
     template_name = 'main/product_form.html'
     success_url = reverse_lazy('catalog:category')
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user  # установка автора продукта
+        return super().form_valid(form)
+
 
 class ProductsUpdateView(UpdateView):
     model = Product

@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'catalog',
     'blog',
-    'users'
+
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
@@ -143,7 +144,7 @@ ACCOUNT_VERIFICATION_REQUIRED_TEMPLATE = 'users/verification.html'
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'noreply@oscarbot.ru'
-EMAIL_HOST_PASSWORD = 'AsTSNVv7pun9'
+EMAIL_HOST_USER = 'lograhan@yandex.ru'
+EMAIL_HOST_PASSWORD = 'ajffqgxfvyvwkqea'
 EMAIL_USE_SSL = True
 

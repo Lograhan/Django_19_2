@@ -1,6 +1,5 @@
-from django.contrib.auth import get_user_model
-from django.db import models
 
+from django.db import models
 from users.models import User
 
 
@@ -26,7 +25,7 @@ class Product(models.Model):
     p_price = models.FloatField(verbose_name='Цена')
     p_date_creation = models.DateTimeField(auto_now=True)
     p_date_change = models.DateTimeField(auto_now_add=True)
-    p_author = models.ForeignKey(User, default=get_user_model().objects.first(), on_delete=models.CASCADE)
+    p_author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return f'{self.id} ({self.p_name}) - {self.p_price}, {self.p_category}'

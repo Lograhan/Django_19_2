@@ -26,7 +26,7 @@ class Product(models.Model):
     p_price = models.FloatField(verbose_name='Цена')
     p_date_creation = models.DateTimeField(auto_now=True)
     p_date_change = models.DateTimeField(auto_now_add=True)
-    p_author = models.ForeignKey(User, default=get_user_model().objects.first().id, on_delete=models.CASCADE)
+    p_author = models.ForeignKey(User, default=get_user_model().objects.first(), on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.id} ({self.p_name}) - {self.p_price}, {self.p_category}'

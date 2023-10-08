@@ -1,4 +1,3 @@
-
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -46,6 +45,7 @@ class VerifyEmailView(View):
 
         if user is not None and token_generator.check_token(user, token):
             user.email_verify = True
+            user.is_acive = True
             user.save()
             login(request, user)
             return redirect('users:verification_success')
@@ -64,8 +64,6 @@ class VerifyEmailView(View):
         ):
             user = None
         return user
-
-
 
 
 class UserForgotPasswordView(SuccessMessageMixin, PasswordResetView):

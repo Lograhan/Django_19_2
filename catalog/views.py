@@ -66,7 +66,7 @@ class ProductsCreateView(CreateView):
     success_url = reverse_lazy('catalog:category')
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.p_author = self.request.user
         return super().form_valid(form)
 
 

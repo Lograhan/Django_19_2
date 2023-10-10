@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from catalog.cervices import get_categories_from_cache
 from catalog.models import Category, Product, Version
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
@@ -43,7 +45,7 @@ class ProductCategoryListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(p_category_id=self.kwargs.get('pk'))
+        queryset = get_categories_from_cache().filter(p_category_id=self.kwargs.get('pk'))
         return queryset
 
     def get_context_data(self, *args, **kwargs):

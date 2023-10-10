@@ -8,3 +8,4 @@ ipython
 pytils
 django-crispy-forms
 django-smtp-ssl
+python-dotenv

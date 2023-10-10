@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 
 from catalog.forms import StyleFormMixin
 from users.models import User
-from users.utils import verify_mail
+from users.cervices import verify_mail
 
 
 class UserRegisterForm(StyleFormMixin, UserCreationForm):

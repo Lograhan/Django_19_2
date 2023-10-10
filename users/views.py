@@ -9,7 +9,7 @@ from django.views import View
 from django.views.generic import CreateView, UpdateView
 from users.forms import UserRegisterForm, UserProfileForm, MyAuthenticationForm
 from users.models import User
-from users.utils import verify_mail, password_mail
+from users.cervices import verify_mail, password_mail
 from django.contrib.auth.tokens import default_token_generator as token_generator
 
 
